@@ -66,6 +66,17 @@
 	<div class="container" id = "status">
 		
 	</div>
+
+
+    <button onclick = "sortbytitle()">Sort by Title</button>;
+    <button onclick = "sortbyrelease()">Sort by Release Date</button>;
+    <button onclick = "sortbyrating()">Sort by Rating</button>;
+    <button onclick = "sortbyruntime()">Sort by Running Time</button>;
+    <button onclick = "sortbyplatform()">Sort by Platform</button>;
+
+
+
+
 	
 
   </body>
@@ -109,6 +120,24 @@
 		document.getElementById("status").innerHTML = "processing...";
 			//alert("test");
 	}
+
+	function sortbyrelease() {
+        htmlSort = $("html").sort();
+        $.ajax({
+            type: "POST",
+            url: "viewall.php",
+            data:{ sort: htmlSort },
+            success: function(data){
+                console.log(data);
+            }
+        })
+
+    }
+	sortbytitle()">Sort by Title</button>;
+    <button onclick = "sortbyrelease()">Sort by Release Date</button>;
+    <button onclick = "sortbyrating()">Sort by Rating</button>;
+    <button onclick = "sortbyruntime()">Sort by Running Time</button>;
+    <button onclick = "sortbyplatform()
 	
 	
 	  </script>

@@ -10,13 +10,13 @@ if (mysqli_connect_errno())
   }
 #Create table that displays all movie information
 $check = "SELECT title, release_year, rating, running_time_minutes, platform FROM movie";
-/**
+
 #display sorted by
 if (isset($_POST['action']) && $_POST['action'] == 'Sort' && isset($_POST['sort'])) {
 	$sortby = $_POST['sort'];
 	$check = "SELECT tickets.Ticket_id, Received, Sender_Name, Sender_Email, Subject, Tech, Status, Select_Ticket FROM Tickets, ticket_to_admin WHERE Tickets.Ticket_id = ticket_to_admin.ticket_id ORDER BY $sortby";
 	}
- */
+
 // Form the SQL query (a SELECT query)
 $result = mysqli_query($db,$check);
 /**
@@ -69,11 +69,11 @@ echo "</tr>";
 echo "</table>";
 echo "<br/><br/>";
 echo "	</form>";
-/**
 
 echo "	<input type = 'submit' name = 'action' value = 'Sort'> ";
 echo "	</form>";
-*/
+
+
 #End of db usage
  mysqli_close($db);
 ?>
