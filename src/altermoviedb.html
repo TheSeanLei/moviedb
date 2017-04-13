@@ -1,0 +1,142 @@
+<!DOCTYPE html> 
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	
+	 <script type = "text/javascript">
+	function addmovie() {
+		//alert("function addmovie start");
+		$(document).ready(function(){
+	
+		// setup some local variables
+		
+		var Title= document.getElementById("title").value;
+		var Release= document.getElementById("release").value;
+		var Rating= document.getElementById("rating").value;
+		var Runtime= document.getElementById("runtime").value;
+		var Platform= document.getElementById("platform").value;
+		
+		var Data = {title: Title, release: Release, rating: Rating, runtime: Runtime, platform: Platform};
+		//alert("functiong workin");
+        $.ajax({
+            type: "post",
+            url: "altermoviedb.php",
+			//dataType: 'text',
+            //data:{ title: htmlTitle, release: htmlRelease, rating: htmlRating, runtime: htmlRuntime, platform: htmlPlatform},
+            dataType: 'text',
+			data: Data,
+			complete: function (response) {
+				//alert("not fail");
+				$('#status').html(response.responseText);
+			},
+			error: function () {
+				alert("fail");
+				$('#status').html('Bummer: there was an error!');
+            }
+        });
+	
+		}); 
+		
+    }
+	  </script>
+
+
+
+
+	  
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>All Movies</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href = "css/form.css" rel = "stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="viewAll()">
+     <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Movie Database</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li ><a href="home.html">Home</a></li>
+                <li><a href="viewall.html">View All Movies</a></li>
+				<li class="active"><a href="altermoviedb.html">Alter Movie DB</a></li>
+                 <li><a href="search.html">Search Movies</a></li> 
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+
+
+	
+	<div id = "addform" class="form-style-8">
+	  <h3>Add a Movie to the Database</h3>
+		<input type="text" id="title" name="title" placeholder="Title" />
+		<input type="text" id="release" name="release" placeholder="Release Year" />
+		<input type="text" id="rating" name="rating" placeholder="Rating (1 to 10)" />
+		<input type="text" id="runtime" name="runtime" placeholder="Running Time (minutes)" />
+		<input type="text" id="platform" name="platform" placeholder="Platform" />
+		<button type="button" onclick = "addmovie()">Add Movie</button>
+	</div>
+	
+	<div class="container" id = "status">
+		
+	</div>
+
+
+  </body>
+</html>
+
+
+

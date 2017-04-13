@@ -1,87 +1,4 @@
 <!DOCTYPE html> 
-	  
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>All Movies</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
-  </head>
-<!-- NAVBAR
-================================================== -->
-  <body onload="viewAll()">
-    <div class="navbar-wrapper">
-      <div class="container">
-
-        <nav class="navbar navbar-inverse navbar-static-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand">Movie Database</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                 <li><a href="home.html">Home</a></li>
-                <li class="active"><a href="viewall.html">View All Movies</a></li>
-                 <li><a href="search.html">Search Movies</a></li> 
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-      </div>
-    </div>
-
-	
-	<div class="container" id = "status">
-		
-	</div>
-
-
-    <button onclick = "sortbytitle()">Sort by Title</button>;
-    <button onclick = "sortbyrelease()">Sort by Release Date</button>;
-    <button onclick = "sortbyrating()">Sort by Rating</button>;
-    <button onclick = "sortbyruntime()">Sort by Running Time</button>;
-    <button onclick = "sortbyplatform()">Sort by Platform</button>;
-
-
-
-
-	
-
-  </body>
-</html>
-
 
 
   <!-- Bootstrap core JavaScript
@@ -122,23 +39,184 @@
 	}
 
 	function sortbyrelease() {
-        htmlSort = $("html").sort();
+		$(document).ready(function(){
+        htmlSort = "release_year";
         $.ajax({
             type: "POST",
             url: "viewall.php",
+			dataType: 'text',
             data:{ sort: htmlSort },
-            success: function(data){
-                console.log(data);
+            complete: function (response) {
+				  $('#status').html(response.responseText);
+			},
+			error: function () {
+				$('#status').html('Bummer: there was an error!');
             }
-        })
-
+        });
+		
+		}); 
     }
-	sortbytitle()">Sort by Title</button>;
-    <button onclick = "sortbyrelease()">Sort by Release Date</button>;
-    <button onclick = "sortbyrating()">Sort by Rating</button>;
-    <button onclick = "sortbyruntime()">Sort by Running Time</button>;
-    <button onclick = "sortbyplatform()
+	function sortbytitle() {
+		$(document).ready(function(){
+        htmlSort = "title";
+        $.ajax({
+            type: "POST",
+            url: "viewall.php",
+			dataType: 'text',
+            data:{ sort: htmlSort },
+            complete: function (response) {
+				  $('#status').html(response.responseText);
+			},
+			error: function () {
+				$('#status').html('Bummer: there was an error!');
+            }
+        });
+		
+		}); 
+    }
 	
+	function sortbyrating() {
+		$(document).ready(function(){
+        htmlSort = "rating";
+        $.ajax({
+            type: "POST",
+            url: "viewall.php",
+			dataType: 'text',
+            data:{ sort: htmlSort },
+            complete: function (response) {
+				  $('#status').html(response.responseText);
+			},
+			error: function () {
+				$('#status').html('Bummer: there was an error!');
+            }
+        });
+		
+		}); 
+    }
 	
+	function sortbyruntime() {
+		$(document).ready(function(){
+        htmlSort = "running_time_minutes";
+        $.ajax({
+            type: "POST",
+            url: "viewall.php",
+			dataType: 'text',
+            data:{ sort: htmlSort },
+            complete: function (response) {
+				  $('#status').html(response.responseText);
+			},
+			error: function () {
+				$('#status').html('Bummer: there was an error!');
+            }
+        });
+		
+		}); 
+    }
+	
+	function sortbyplatform() {
+		$(document).ready(function(){
+        htmlSort = "platform";
+        $.ajax({
+            type: "POST",
+            url: "viewall.php",
+			dataType: 'text',
+            data:{ sort: htmlSort },
+            complete: function (response) {
+				  $('#status').html(response.responseText);
+			},
+			error: function () {
+				$('#status').html('Bummer: there was an error!');
+            }
+        });
+		
+		}); 
+    }
 	  </script>
+
+
+
+
+	  
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>All Movies</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body onload="viewAll()">
+       <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Movie Database</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="home.html">Home</a></li>
+                <li class="active"><a href="viewall.html">View All Movies</a></li>
+				<li><a href="altermoviedb.html">Alter Movie DB</a></li>
+                 <li><a href="search.html">Search Movies</a></li> 
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+
+
+	
+	<div class="container" id = "status">
+		
+	</div>
+
+	<div class="container">
+		<button type="button" onclick = "sortbytitle()">Sort by Title</button>
+		<button type="button" onclick = "sortbyrelease()">Sort by Release Date</button>
+		<button type="button" onclick = "sortbyrating()">Sort by Rating</button>
+		<button type="button" onclick = "sortbyruntime()">Sort by Running Time</button>
+		<button type="button" onclick = "sortbyplatform()">Sort by Platform</button>
+	</div>
+
+  </body>
+</html>
+
+
 
