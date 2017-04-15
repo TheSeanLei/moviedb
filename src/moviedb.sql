@@ -43,6 +43,11 @@ CREATE TABLE IF NOT EXISTS `genre` (
   `release_year` int NOT NULL,
   `genre` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`title`, `release_year`, `genre`)
+    ON UPDATE CASCADE,
+  FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+  FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`
+    ON UPDATE CASCADE)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -146,14 +151,20 @@ CREATE TABLE IF NOT EXISTS `acts` (
  `id` int NOT NULL,
  `roleName` varchar(30),
  `type` ENUM('Lead', 'Secondary', 'Tertiary', 'Extra'),
-  PRIMARY KEY (`title`, `release_year`, `id`)
+  PRIMARY KEY (`title`, `release_year`, `id`),
+  FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+  FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE,
+  FOREIGN KEY (`id`) REFERENCES movie_maker(`id`)
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data into ‘acts’
 --
 -- ---------------------------------------------------------
-INSERT INTO `acts` (`title`, `release_year`, `ID`, `roleName`, `type`)
+INSERT INTO `acts` (`title`, `release_year`, `id`, `roleName`, `type`)
 VALUES
 ('Logan', 2017, 2, 'James Howlett/Logan/Wolverine', 'Lead'),
 ('The Dark Knight', 2018, 7, 'Lucius Fox', 'Secondary'),
@@ -169,15 +180,21 @@ VALUES
 CREATE TABLE IF NOT EXISTS `directs` (
 `title` varchar(50) NOT NULL,
 `release_year` int NOT NULL,
-`ID` int NOT NULL, 
-PRIMARY KEY(`title`, `release_year`, `ID`)
+`id` int NOT NULL, 
+PRIMARY KEY(`title`, `release_year`, `id`),
+FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`id`) REFERENCES movie_maker(`id`)
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data into 'directs'
 --
 -- -----------------------------------------------------
-INSERT INTO `directs` (`title`, `release_year`, `ID`)
+INSERT INTO `directs` (`title`, `release_year`, `id`)
 VALUES
 ('Frozen', 2013, 13),
 ('The Dark Knight', 2008, 15),
@@ -192,8 +209,14 @@ VALUES
 CREATE TABLE IF NOT EXISTS `writes` (
 `title` varchar(50) NOT NULL,
 `release_year` year NOT NULL,
-`ID` int NOT NULL, 
-PRIMARY KEY(`title`, `release_year`, `ID`)
+`id` int NOT NULL, 
+PRIMARY KEY(`title`, `release_year`, `id`),
+FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`id`) REFERENCES movie_maker(`id`)
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -216,17 +239,23 @@ INSERT INTO `writes` (`title`, `release_year`, `ID`) VALUES
 CREATE TABLE IF NOT EXISTS `scores` (
 `title` varchar(50) NOT NULL,
 `release_year` year NOT NULL,
-`ID` int NOT NULL, 
+`id` int NOT NULL, 
 `disks` int,
 `tracks` int,
-PRIMARY KEY(`title`, `release_year`, `ID`)
+PRIMARY KEY(`title`, `release_year`, `id`),
+FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`id`) REFERENCES movie_maker(`id`)
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data into 'scores'
 --
 -- -----------------------------------------------------
-INSERT INTO `scores` (`title`, `release_year`, `ID`, `disks`, `tracks`)
+INSERT INTO `scores` (`title`, `release_year`, `id`, `disks`, `tracks`)
 VALUES
 ('Arrival', 2016, 20, 01, 20),
 ('Interstellar', 2014, 21, 01, 16),
@@ -243,15 +272,21 @@ VALUES
 CREATE TABLE IF NOT EXISTS `produces` (
 `title` varchar(50) NOT NULL,
 `release_year` year NOT NULL,
-`ID` int NOT NULL, 
-PRIMARY KEY(`title`, `release_year`, `ID`)
+`id` int NOT NULL, 
+PRIMARY KEY(`title`, `release_year`, `id`),
+FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`id`) REFERENCES movie_maker(`id`)
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data into 'produces'
 --
 -- -----------------------------------------------------
-INSERT INTO `produces` (`title`, `release_year`, `ID`)
+INSERT INTO `produces` (`title`, `release_year`, `id`)
 VALUES
 ('Maleficent', 2014, 1),
 ('X-Men Origins: Wolverine', 2009, 2),
@@ -268,7 +303,11 @@ CREATE TABLE IF NOT EXISTS `subbed` (
 `title` varchar(50) NOT NULL,
 `release_year` year NOT NULL,
 `language` varchar(50) NOT NULL,
-PRIMARY KEY(`title`, `release_year`, `language`)
+PRIMARY KEY(`title`, `release_year`, `language`),
+FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -293,7 +332,11 @@ CREATE TABLE IF NOT EXISTS `dubbed` (
 `title` varchar(50) NOT NULL,
 `release_year` year NOT NULL,
 `language` varchar(50) NOT NULL,
-PRIMARY KEY(`title`, `release_year`, `language`)                          
+PRIMARY KEY(`title`, `release_year`, `language`),
+FOREIGN KEY (`title`) REFERENCES movie(`title`)
+    ON UPDATE CASCADE,
+FOREIGN KEY (`release_year`) REFERENCES movie(`release_year`)
+    ON UPDATE CASCADE                          
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
