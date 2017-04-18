@@ -29,6 +29,8 @@
 			if(hr.readyState == 4 && hr.status == 200) {
 				var return_data = hr.responseText;
 				document.getElementById("status").innerHTML = return_data;
+				var json = JSON.stringify(data);
+				alert(json);
 			}
 		}
 	
@@ -38,7 +40,7 @@
 			//alert("test");
 	}
 
-	function sortbyrelease() {
+	function sortbyrelease()
 		$(document).ready(function(){
         htmlSort = "release_year";
         $.ajax({
@@ -48,6 +50,8 @@
             data:{ sort: htmlSort },
             complete: function (response) {
 				  $('#status').html(response.responseText);
+				  //var json = JSON.stringify(response.responseText);
+					//alert(json);
 			},
 			error: function () {
 				$('#status').html('Bummer: there was an error!');
@@ -131,6 +135,30 @@
 		
 		}); 
     }
+	
+	
+	
+	function downloadjson() {
+		//alert("test");
+		
+		$(document).ready(function(){
+			$.ajax({
+				type: "POST",
+				url: "downloadjson.php",
+				dataType: 'text',
+				data:{},
+				complete: function (response) {
+					  $('#statusjson').html(response.responseText);
+				},
+				error: function () {
+					alert("fail");
+				}
+			});
+		
+		}); 
+		
+	
+	}
 	  </script>
 
 
@@ -190,7 +218,7 @@
                 <li><a href="home.html">Home</a></li>
                 <li class="active"><a href="viewall.html">View All Movies</a></li>
 				<li><a href="altermoviedb.html">Alter Movie DB</a></li>
-                 <li><a href="search.html">Search Movies</a></li> 
+                 <li><a href="search.html">Search Actor/Actress</a></li> 
                 </li>
               </ul>
             </div>
@@ -215,6 +243,18 @@
 		<button type="button" onclick = "sortbyplatform()">Sort by Platform</button>
 	</div>
 
+	
+	<br><br>
+	<div class ="container">
+	<!--
+	<button type="button" onclick = "downloadjson()">Download Movie Table in JSON</button>
+	-->
+	<a href="export.json" download>Download json file of movie data
+	</a>
+	</div>
+	<div class = "container" id= "statusjson">
+		
+	</div>
   </body>
 </html>
 

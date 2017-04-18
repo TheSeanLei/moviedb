@@ -1,7 +1,0 @@
-1#Sept 10 2016 09:00AM#Hercule Poirot#Seanieboyy+poirot@gmail.com#Robot malfunction#Problem Description temp#Sean#open
-2#Sept 10 2014 01:30PM#Miss Marple#Seanieboyy+marple@gmail.com#Problem with computer#Problem Description temp#Danny#open
-3#Sept 11 2014 09:00PM#Jane Tennison#Seanieboyy+tennison@gmail.com#Computer is frozen#Problem Description temp#Sean#closed
-4#Sept 10 2016 07:00AM#Hillary Clinton#Seanieboyy+clinton@gmail.com#Email got leaked#Problem Description Temp#Sean#open
-5#Sept 12 2016 09:00AM#Donald Trump#Seanieboyy+trump@gmail.com#Bad hair day#Problem Description Temp#Danny#closed
-6#Oct 12 2016 09:00AM#Gary Johnson#Seanieboyy+johnson@gmail.com#Low amount of support#Problem Description Temp##open
-7#Oct 12 2013 09:00AM#Alpha Beta#Seanieboyy+beta@gmail.com#I am not smart#Problem Description Temp##closed

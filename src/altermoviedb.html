@@ -39,8 +39,36 @@
 				$('#status').html(response.responseText);
 			},
 			error: function () {
-				alert("fail");
+				alert("Movie addition failed for given movie title and release year");
 				$('#status').html('Bummer: there was an error!');
+            }
+        });
+	
+		}); 
+		
+    }
+	
+	function deletemovie() {
+		//alert("function addmovie start");
+		$(document).ready(function(){
+		
+		var Title= document.getElementById("titleid").value;
+		var Release = document.getElementById("releaseid").value;
+		//alert("functiong workin");
+        $.ajax({
+            type: "post",
+            url: "delmovie.php",
+			//dataType: 'text',
+            //data:{ title: htmlTitle, release: htmlRelease, rating: htmlRating, runtime: htmlRuntime, platform: htmlPlatform},
+            dataType: 'text',
+			data: {title: Title, release: Release},
+			complete: function (response) {
+				//alert("not fail");
+				$('#delstatus').html(response.responseText);
+			},
+			error: function () {
+				alert("fail");
+				$('#delstatus').html('Bummer: there was an error!');
             }
         });
 	
@@ -107,7 +135,7 @@
                 <li ><a href="home.html">Home</a></li>
                 <li><a href="viewall.html">View All Movies</a></li>
 				<li class="active"><a href="altermoviedb.html">Alter Movie DB</a></li>
-                 <li><a href="search.html">Search Movies</a></li> 
+                <li><a href="search.html">Search Actor/Actress</a></li> 
                 </li>
               </ul>
             </div>
@@ -117,24 +145,36 @@
       </div>
     </div>
 
+	<br></br>
+	<br></br>
 
-
-	
+	<div class="container">
 	<div id = "addform" class="form-style-8">
 	  <h3>Add a Movie to the Database</h3>
-		<input type="text" id="title" name="title" placeholder="Title" />
-		<input type="text" id="release" name="release" placeholder="Release Year" />
+		<input type="text" id="title" name="title" placeholder="Title" required/>
+		<input type="text" id="release" name="release" placeholder="Release Year" required/>
 		<input type="text" id="rating" name="rating" placeholder="Rating (1 to 10)" />
 		<input type="text" id="runtime" name="runtime" placeholder="Running Time (minutes)" />
-		<input type="text" id="platform" name="platform" placeholder="Platform" />
+		<input type="text" id="platform" name="platform" placeholder=	"Platform" />
 		<button type="button" onclick = "addmovie()">Add Movie</button>
 	</div>
-	
+	</div>
 	<div class="container" id = "status">
 		
 	</div>
-
-
+	<br></br>
+	<div class="container">
+	<div id = "delete" class="form-style-8">
+	  <h3>Delete a Movie from the Database</h3>
+		<input type="text" id="titleid" name="title" placeholder="Title" />
+		<input type="text" id="releaseid" name="release" placeholder="Release Year" />
+		<button type="button" onclick = "deletemovie()">Delete Movie</button>
+	</div>
+	</div>
+	<div class="container" id = "delstatus">
+		
+	</div>
+	
   </body>
 </html>
 

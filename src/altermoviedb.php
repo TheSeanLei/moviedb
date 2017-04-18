@@ -21,7 +21,8 @@ $check = "INSERT INTO movie (title, release_year, rating, running_time_minutes, 
 // Form the SQL query (a SELECT query)
 if (!mysqli_query($db, $check))
   {
-  die('Error: ' . mysqli_error($con));
+	  //echo "Could not add based on given title and release year of movie"
+  die('Could not add given the inputted movie title and release year ' . mysqli_error($con));
   }
 echo "1 record added";
 
