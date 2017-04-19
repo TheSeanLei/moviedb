@@ -40,7 +40,7 @@
 			//alert("test");
 	}
 
-	function sortbyrelease()
+	function sortbyrelease(){
 		$(document).ready(function(){
         htmlSort = "release_year";
         $.ajax({
@@ -145,10 +145,18 @@
 			$.ajax({
 				type: "POST",
 				url: "downloadjson.php",
-				dataType: 'text',
+				dataType: 'json',
 				data:{},
-				complete: function (response) {
-					  $('#statusjson').html(response.responseText);
+				complete: function (data) {
+					  //$('#statusjson').html(response.responseText);
+					  alert("yay");
+					  var a = document.createElement('a');
+						a.href = 'data:' + data;
+						a.download = 'data.json';
+						a.innerHTML = 'download JSON';
+
+						var container = document.getElementById('container');
+						container.appendChild(a);
 				},
 				error: function () {
 					alert("fail");
@@ -199,6 +207,7 @@
 <!-- NAVBAR
 ================================================== -->
   <body onload="viewAll()">
+	<br></br><br>
        <div class="navbar-wrapper">
       <div class="container">
 
@@ -249,6 +258,7 @@
 	<!--
 	<button type="button" onclick = "downloadjson()">Download Movie Table in JSON</button>
 	-->
+	
 	<a href="export.json" download>Download json file of movie data
 	</a>
 	</div>
