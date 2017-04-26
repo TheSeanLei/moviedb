@@ -339,3 +339,5 @@ VALUES
 -- -----------------------------------------------------
 
 CREATE VIEW v AS SELECT * FROM movie;
+
+CREATE TRIGGER `onUpdate` BEFORE INSERT ON `movie` FOR EACH ROW BEGIN if NEW.rating > 10 THEN SET NEW.rating = 10; end if; if NEW.rating < 0 THEN SET NEW.rating = 10; end if; END
