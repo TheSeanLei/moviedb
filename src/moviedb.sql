@@ -33,7 +33,7 @@ INSERT INTO `movie` (`title`, `release_year`, `rating`, `running_time_minutes`, 
 ('Maleficent', 2014, 7, 97, 'none'),
 ('X-Men Origins: Wolverine', 2009, 6.7, 119, 'none'),
 ('Star Trek: Insurrection', 1998, 6.4, 103, 'none'),
-('Baywatch',2017, 0, 0, 'none'),
+('Baywatch',2017, 5.1, 119, 'none'),
 ('Gold', 2016, 6.6, 121, 'none');
 
 -- --------------------------------------------------------
@@ -103,8 +103,8 @@ CREATE TABLE IF NOT EXISTS `movie_maker` (
   `id` int NOT NULL CHECK (id>=1),
   `fname` varchar(30) NOT NULL,
   `lname` varchar(30) NOT NULL, 
-  `birth_date_yyyy-mm-dd` DATE,
-  `death_date_yyyy-mm-dd` DATE,
+  `birth_date_yyyy-mm-dd` DATE CHECK(`birth_date_yyyy-mm-dd` < CURDATE()),
+  `death_date_yyyy-mm-dd` DATE CHECK(`death_date_yyyy-mm-dd` < CURDATE()),
   `age` int,
   `country` varchar(50),
   PRIMARY KEY (`id`)
@@ -337,3 +337,7 @@ VALUES
 ('Frozen', 2013, 'Dutch'),
 ('Frozen', 2013, 'Italian');
 -- -----------------------------------------------------
+
+CREATE VIEW v AS SELECT * FROM movie;
+
+CREATE TRIGGER `onUpdate` BEFORE INSERT ON `movie` FOR EACH ROW BEGIN if NEW.rating > 10 THEN SET NEW.rating = 10; end if; if NEW.rating < 0 THEN SET NEW.rating = 10; end if; END
