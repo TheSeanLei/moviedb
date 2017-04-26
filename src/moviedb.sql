@@ -10,7 +10,7 @@
 CREATE TABLE IF NOT EXISTS `movie` (
   `title` varchar(30) NOT NULL,
   `release_year` int NOT NULL,
-  `rating` float DEFAULT NULL,
+  `rating` float DEFAULT NULL CHECK(`rating > 0 and `rating` < 10),
   `running_time_minutes` integer NOT NULL CHECK (running_time_minutes>=1),
   `platform` ENUM('Netflix','Amazon Instant','Youtube','HBO GO', 'none') DEFAULT 'none',
   PRIMARY KEY (`title`, `release_year`)
@@ -103,8 +103,8 @@ CREATE TABLE IF NOT EXISTS `movie_maker` (
   `id` int NOT NULL CHECK (id>=1),
   `fname` varchar(30) NOT NULL,
   `lname` varchar(30) NOT NULL, 
-  `birth_date_yyyy-mm-dd` DATE,
-  `death_date_yyyy-mm-dd` DATE,
+  `birth_date_yyyy-mm-dd` DATE CHECK(`birth_date_yyyy-mm-dd` < CURDATE()),
+  `death_date_yyyy-mm-dd` DATE CHECK(`death_date_yyyy-mm-dd` < CURDATE()),
   `age` int,
   `country` varchar(50),
   PRIMARY KEY (`id`)
