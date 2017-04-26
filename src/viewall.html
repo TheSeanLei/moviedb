@@ -145,18 +145,18 @@
 			$.ajax({
 				type: "POST",
 				url: "downloadjson.php",
-				dataType: 'json',
+				dataType: 'text',
 				data:{},
 				complete: function (data) {
 					  //$('#statusjson').html(response.responseText);
-					  alert("yay");
-					  var a = document.createElement('a');
-						a.href = 'data:' + data;
-						a.download = 'data.json';
-						a.innerHTML = 'download JSON';
+					  alert(data.responseText);
+					  //var a = document.createElement('a');
+					//	a.href = 'data:' + data;
+					//	a.download = 'data.json';
+					//	a.innerHTML = 'download JSON';
 
-						var container = document.getElementById('container');
-						container.appendChild(a);
+					//	var container = document.getElementById('container');
+					//	container.appendChild(a);
 				},
 				error: function () {
 					alert("fail");
@@ -256,8 +256,10 @@
 	<br><br>
 	<div class ="container">
 	<!--
-	<button type="button" onclick = "downloadjson()">Download Movie Table in JSON</button>
+	
 	-->
+	<button type="button" onclick = "downloadjson()">Upload JSON file with latest data</button>
+	
 	
 	<a href="export.json" download>Download json file of movie data
 	</a>

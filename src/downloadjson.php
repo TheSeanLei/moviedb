@@ -30,12 +30,13 @@ $json = json_encode($rows);
 
 //header('Content-disposition: attachment; filename=export.json');
 
-header('Content-Type: application/json');
-echo json_encode($rows);
+//header('Content-Type: application/json');
+//echo json_encode($rows);
 //write json to file
-$file = "downloadjson.json";
-//chmod($file, 0777);
+$file = fopen("downloadjson.json", "w+");
 /*
+//chmod($file, 0777);
+
 if (file_put_contents($file, $json)){
     echo "JSON file created successfully...";
 }
@@ -43,7 +44,33 @@ else  {
     echo "Oops! Error creating json file...";
 	
 }
+fclose($file);
+
+
+if(!file_exists("downloadjson.json")){
+	echo "file doesn't exist";
+}
+else{
+	echo "file exists!";
+}
+
 */
+// exclusive lock
+if (flock($file,LOCK_EX))
+  {
+  fwrite($file, $json);
+  // release lock
+  flock($file,LOCK_UN);
+  echo "Json file has been updated with the current movie table";
+  }
+else
+  {
+  echo "Error locking file!";
+  }
+
+fclose($file);
+
+
 
 //echo json_encode($rows);
 

@@ -21,7 +21,6 @@
 	}
 	
 	
-	$stmt->close();
 	$db->close();
 
 
