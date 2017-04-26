@@ -337,3 +337,5 @@ VALUES
 ('Frozen', 2013, 'Dutch'),
 ('Frozen', 2013, 'Italian');
 -- -----------------------------------------------------
+
+CREATE VIEW v AS SELECT * FROM movie;
