@@ -10,7 +10,7 @@
 CREATE TABLE IF NOT EXISTS `movie` (
   `title` varchar(30) NOT NULL,
   `release_year` int NOT NULL,
-  `rating` float DEFAULT NULL CHECK(`rating > 0 and `rating` < 10),
+  `rating` float DEFAULT NULL,
   `running_time_minutes` integer NOT NULL CHECK (running_time_minutes>=1),
   `platform` ENUM('Netflix','Amazon Instant','Youtube','HBO GO', 'none') DEFAULT 'none',
   PRIMARY KEY (`title`, `release_year`)
