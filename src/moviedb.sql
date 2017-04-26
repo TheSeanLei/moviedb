@@ -33,7 +33,7 @@ INSERT INTO `movie` (`title`, `release_year`, `rating`, `running_time_minutes`, 
 ('Maleficent', 2014, 7, 97, 'none'),
 ('X-Men Origins: Wolverine', 2009, 6.7, 119, 'none'),
 ('Star Trek: Insurrection', 1998, 6.4, 103, 'none'),
-('Baywatch',2017, 0, 0, 'none'),
+('Baywatch',2017, 5.1, 119, 'none'),
 ('Gold', 2016, 6.6, 121, 'none');
 
 -- --------------------------------------------------------
